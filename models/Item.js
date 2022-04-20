@@ -9,7 +9,9 @@ const ItemSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
     brand: { type: mongoose.Types.ObjectId, ref: "Brand" },
-    type:{type:String}
+    rating: { type: Number, default: 0 },
+    allRates: [{ type: Number }]
+    
 }, { timestamps: true })
 
 

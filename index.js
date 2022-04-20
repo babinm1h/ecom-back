@@ -10,7 +10,7 @@ import bodyParser from "body-parser"
 
 
 const app = express()
-const PORT = 7777
+const PORT = process.env.PORT || 7777
 
 
 app.use(express.json())
@@ -20,7 +20,17 @@ app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL || `http://localhost:3000`
 }))
+app.use(bodyParser.json({
+    verify: (req, res, buf) => {
+        if (!req.headers['stripe-signature']) {
+            console.log("nosign");
+            return
+        }
+        req.rawBody = buf.toString()
+    }
+}))
 app.use(`/serv`, router)
+
 
 
 

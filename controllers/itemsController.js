@@ -19,7 +19,7 @@ class ItemsController {
             if (category) query.category = { $in: category }
             if (price) query.price = { $lte: price }
 
-            let items = await Item.find(query).sort(sort).populate("brand")
+            let items = await Item.find(query).sort(sort).populate("brand reviews")
 
             return res.json(items)
 
@@ -72,7 +72,7 @@ class ItemsController {
     async getOne(req, res) {
         try {
             const id = req.params.id
-            const item = await Item.findById(id).populate("brand")
+            const item = await Item.findById(id).populate("brand reviews")
 
             return res.json(item)
 
