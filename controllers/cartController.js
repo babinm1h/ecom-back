@@ -73,7 +73,7 @@ class CartController {
             const userId = req.user._id
             const itemId = req.params.id
 
-            const item = await CartItem.findOne({ id: itemId, userId }).populate("item")
+            const item = await CartItem.findOne({ _id: itemId, userId }).populate("item")
 
             item.quan += 1
             await item.save()
@@ -90,7 +90,7 @@ class CartController {
             const userId = req.user._id
             const itemId = req.params.id
 
-            const item = await CartItem.findOne({ id: itemId, userId }).populate("item")
+            const item = await CartItem.findOne({ _id: itemId, userId }).populate("item")
 
             item.quan -= 1
             await item.save()

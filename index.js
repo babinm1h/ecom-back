@@ -8,6 +8,11 @@ import cookieParser from "cookie-parser"
 import { passport } from "./utils/passport.js"
 import bodyParser from "body-parser"
 
+const origins = [
+    process.env.CLIENT_URL || `http://localhost:3000`,
+    "https://amaz0n-clone.herokuapp.com/"
+]
+
 
 const app = express()
 const PORT = process.env.PORT || 7777
@@ -18,12 +23,11 @@ app.use(cookieParser())
 app.use(passport.initialize())
 app.use(cors({
     credentials: true,
-    origin: process.env.CLIENT_URL || `http://localhost:3000`
+    origin: origins
 }))
 app.use(bodyParser.json({
     verify: (req, res, buf) => {
         if (!req.headers['stripe-signature']) {
-            console.log("nosign");
             return
         }
         req.rawBody = buf.toString()

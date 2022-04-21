@@ -1,8 +1,8 @@
 import { Router } from "express";
 import ordersController from "../controllers/ordersController.js";
+import { checkAuth } from "../middleware/checkAuth.js";
 
 export const ordersRouter = new Router()
 
-ordersRouter.get("/", ordersController.getOrders)
-ordersRouter.post('/', ordersController.create)
-ordersRouter.delete("/:id", ordersController.delete)
+ordersRouter.get("/", checkAuth, ordersController.getOrders)
+ordersRouter.delete("/:id",checkAuth, ordersController.delete)
