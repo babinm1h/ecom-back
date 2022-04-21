@@ -25,7 +25,8 @@ class AuthController {
             res.cookie('amazToken', token, {
                 secure: true,
                 httpOnly: true,
-                maxAge: 999999999999
+                maxAge: 999999999999,
+                sameSite: "none",
             })
 
             return res.json(user)
@@ -46,7 +47,8 @@ class AuthController {
             res.cookie('amazToken', token, {
                 secure: true,
                 httpOnly: true,
-                maxAge: 999999999999
+                maxAge: 999999999999,
+                sameSite: "none",
             })
 
             return res.json(user)
