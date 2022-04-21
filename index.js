@@ -10,7 +10,7 @@ import bodyParser from "body-parser"
 
 const origins = [
     process.env.CLIENT_URL || `http://localhost:3000`,
-    "https://amaz0n-clone.herokuapp.com/"
+    "https://effulgent-cuchufli-62f90c.netlify.app/"
 ]
 
 
