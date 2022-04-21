@@ -10,7 +10,7 @@ class ItemsController {
             let query = {}
             let sort = {}
 
-            let { category, price, brand, min, activeSort } = req.query
+            let { category, price, brand, min, activeSort, search } = req.query
 
             if (activeSort === "priceAsc") sort.price = 1
             if (activeSort === 'priceDesc') sort.price = -1
@@ -18,7 +18,9 @@ class ItemsController {
             if (brand) query.brand = { $in: brand }
             if (category) query.category = { $in: category }
             if (price) query.price = { $lte: price }
+            if (search) query.title = { $regex: new RegExp(search, "i") }
 
+            
             let items = await Item.find(query).sort(sort).populate("brand reviews")
 
             return res.json(items)
@@ -93,6 +95,7 @@ class ItemsController {
             return res.status(500).json({ message: "Server error" })
         }
     }
+
 
 }
 
