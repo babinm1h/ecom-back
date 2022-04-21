@@ -9,8 +9,8 @@ import { passport } from "./utils/passport.js"
 import bodyParser from "body-parser"
 
 const origins = [
-    process.env.CLIENT_URL || `http://localhost:3000`,
-    "https://effulgent-cuchufli-62f90c.netlify.app/"
+    "https://effulgent-cuchufli-62f90c.netlify.app",
+    `http://localhost:3000`,
 ]
 
 
