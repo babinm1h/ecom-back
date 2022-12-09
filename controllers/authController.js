@@ -29,7 +29,7 @@ class AuthController {
                 sameSite: "none",
             })
 
-            return res.json(user)
+            return res.json({...user, token})
 
         } catch (err) {
             return res.status(500).json({ message: "Server error" })
@@ -51,7 +51,7 @@ class AuthController {
                 sameSite: "none",
             })
 
-            return res.json(user)
+            return res.json({...user, token})
 
 
         } catch (err) {
